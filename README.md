@@ -40,6 +40,10 @@ HU-EEQI = EQ^α · E^β · J^γ with α = 0.6, β = γ = 0.2 (per pixel and year
 | `mapas_anuais_filled/` | `mapas_anuais_HU_EEQI_v6_filled.py`, `montar_docx.py` | Annual maps of the 27 capitals |
 | `trends_HU_EEQI_v6/` | `gerar_trends_HU_EEQI_v6.py` | Table 1, trend figures, municipal series, robustness and demographic correlations |
 | `material_suplementar_03/` | `gerar_material_suplementar_03.py` | Supplementary analyses of notebook 03 (needs `panel_v6.csv` exported by notebook 03) |
+| `figura1_fluxograma/` | `figura1_fluxograma.py` | Methodological workflow (Figure 1) |
+| `submissao_scripts/` | `analises_complementares.py` | Window-based change decomposition, step of E at the sensor transition, panel trends with E fixed, South–North gap |
+| | `validar_resultados.py`, `auditar_numeros.py`, `verificar_referencias.py` | Independent validation of the statistics, audit of the numbers in the text and Crossref check of the references |
+| | `montar_suplementar.py`, `montar_manuscrito.py`, `montar_submissao.py` | Assembly of the submission package (supplementary numbering S1–S11, manuscript, title page, cover letter) |
 | root | `checar_layout.py` | Automatic check of clipped or overlapping text in every figure before saving |
 
 Data included: IBGE capitals (`mapas_anuais_filled/data/Capitais.shp`) and states (`figura2_tabelas_complementares/data/BR_UF_2024.shp`), IBGE demographic indicators (`trends_HU_EEQI_v6/dados/`) and the frozen calibration (`material_suplementar_03/dados/calibration_v6.json`).

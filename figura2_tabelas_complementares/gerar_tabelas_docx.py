@@ -91,7 +91,9 @@ def doc_figura2():
     D.add_picture(png, width=Cm(17.0))
     D.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
     para(D, "Location of the 27 Brazilian state capitals (26 state capitals and Brasília, Federal District) "
-            "and of the five geographic regions of Brazil. Data source: IBGE (2024); datum SIRGAS 2000.",
+            "and of the five geographic macro-regions of Brazil; the inset shows Brazil in South America. "
+            "Data: IBGE (2024) state and municipal boundaries; country boundaries from the LSIB (2017); "
+            "datum SIRGAS 2000.",
          "Figure 2. ", size=9)
     save_doc(D, "Figure_2_location")
 
@@ -162,7 +164,7 @@ def s10():
     para(D, f"Completeness and gap-filling diagnostics of the {n_img} annual HU-EEQI images "
             f"({years_cap.size} capitals × up to {years_cap.max()} years, 2000–2025) of the gap-filled collection. "
             "All statistics are computed over every pixel of the fixed urban domain of each capital at the export "
-            "resolution (30 m; 50 m for Brasília). 'Clear observations' is the number of cloud-, shadow- and "
+            "resolution (30 m). 'Clear observations' is the number of cloud-, shadow- and "
             "saturation-free Landsat Collection 2 Level-2 scenes entering the annual median composite of the pixel "
             "(mean over the observed pixels); the minimum of three clear observations defines an observed pixel-year. "
             "Missing pixel-years were filled pixel by pixel, in this order: (1) linear interpolation in time between "
@@ -184,7 +186,7 @@ def s10():
           "filled: largest annual share of filled pixels (year). Filled by type: share of the filled pixel-years "
           "filled by each of the four methods (temporal interpolation / nearest observed year / 2-km window mean / "
           "capital median). The full table by capital and year (sensors, observed and filled shares by method, "
-          "clear observations, MAIAC retrievals) is provided as TableS10_2_completeness_by_capital_year (CSV/XLSX).",
+          "clear observations, MAIAC retrievals) is provided as Table S10.2 (file TableS10_2_completeness_by_capital_year, CSV/XLSX).",
           fs=7)
     sy = pd.DataFrame({"Years": [], "Landsat sensors in the annual composites": []})
     grp, start, prev = [], None, None
@@ -197,7 +199,7 @@ def s10():
     grp.append((start, last, prev))
     sy = pd.DataFrame([{"Years": f"{a}" if a == b else f"{a}–{b}", "Landsat sensors in the annual composites": s}
                        for a, b, s in grp])
-    table(D, sy, "Table S10.2",
+    table(D, sy, "Table S10.3",
           "Landsat sensors contributing clear observations to the annual composites (sensors present in at least 1% "
           "of the observed pixels; most frequent combination among the capitals in each year). TM and ETM+ "
           "reflectances were harmonized to OLI (Roy et al., 2016, OLS coefficients).", fs=8)

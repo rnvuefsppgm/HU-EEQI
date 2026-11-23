@@ -29,8 +29,11 @@ os.makedirs(FIG_DIR, exist_ok=True)
 
 REG_EN = {"Norte": "North", "Nordeste": "Northeast", "Centro-oeste": "Central-West",
           "Centro-Oeste": "Central-West", "Sudeste": "Southeast", "Sul": "South"}
-REG_COL = {"North": "#cfe8e3", "Northeast": "#d7ebbd", "Central-West": "#d8d4ec",
-           "Southeast": "#f3d6e7", "South": "#efe7c4"}
+REG_COL = {"North": "#cbe6cf", "Northeast": "#f7e1b5", "Central-West": "#f4cfc2",
+           "Southeast": "#cdd9ee", "South": "#e3d6ec"}
+REG_DARK = {"North": "#2f7d4f", "Northeast": "#b9791c", "Central-West": "#b4513a",
+            "Southeast": "#3b5f9e", "South": "#77529a"}
+SA_JSON = os.path.join(HERE, "data", "south_america_LSIB2017.geojson")   # USDOS LSIB simple (2017), via GEE
 REG_ORDER = ["North", "Northeast", "Central-West", "Southeast", "South"]
 
 # Posição do rótulo de cada capital: (dx, dy) em pontos a partir do marcador e alinhamento.
@@ -95,9 +98,9 @@ def main():
         ax.text(p.x + dx, p.y + dy, s, fontsize=6, color="#6e6e6e", style="italic",
                 ha="center", va="center", zorder=4)
 
-    ax.scatter(pts.geometry.x, pts.geometry.y, s=14, facecolor="white", edgecolor="#1a1a1a",
-               linewidth=0.8, zorder=6)
-    ax.scatter(pts.geometry.x, pts.geometry.y, s=2.5, color="#1a1a1a", zorder=7)
+    pts["region"] = pts["NM_REGIA"].map(REG_EN)
+    ax.scatter(pts.geometry.x, pts.geometry.y, s=16, marker="s", c=pts["region"].map(REG_DARK),
+               edgecolor="white", linewidth=0.7, zorder=6)
     for _, c in pts.iterrows():
         name = c["NM_MUN"]
         dx, dy, ha = LAB[name]
@@ -119,12 +122,14 @@ def main():
     ax.grid(color="#bdbdbd", linewidth=0.3, linestyle=(0, (3, 3)), zorder=0)
 
     # legenda das regiões
-    hs = [Patch(facecolor=REG_COL[r], edgecolor="#6e6e6e", linewidth=0.4, label=r) for r in REG_ORDER]
-    ax.legend(handles=hs, title="Regions of Brazil", loc="lower left", bbox_to_anchor=(0.015, 0.13),
-              frameon=True, framealpha=1, edgecolor="#999999", fontsize=fs.FS_SMALL,
-              title_fontsize=fs.FS, borderpad=0.6, handlelength=1.6).get_frame().set_linewidth(0.5)
+    from matplotlib.lines import Line2D
+    hs = [Patch(facecolor=REG_COL[r], edgecolor=REG_DARK[r], linewidth=0.5, label=r) for r in REG_ORDER]
+    hs += [Line2D([], [], marker="s", ls="none", color="#555555", mec="white", ms=5, label="State capital"),
+           Line2D([], [], color="#8c8c8c", lw=0.6, label="State boundary")]
+    leg = ax.legend(handles=hs, loc="upper center", bbox_to_anchor=(0.5, -0.045), ncol=7, frameon=False,
+                    fontsize=fs.FS_SMALL, handlelength=1.4, columnspacing=1.1, handletextpad=0.4)
     # barra de escala (km no paralelo da barra)
-    ybar = y0 + 0.3
+    ybar = y0 + 1.6
     km_deg = 111.32 * np.cos(np.radians(ybar))
     xs = x0 + 0.2
     for k, colr in enumerate(["#1a1a1a", "white"]):
@@ -133,14 +138,32 @@ def main():
     for k, lab in enumerate(["0", "250", "500 km"]):
         ax.text(xs + k * 250 / km_deg, ybar + 0.6, lab, fontsize=6, ha="center" if k < 2 else "left",
                 va="bottom", zorder=9)
-    # seta do norte
-    ax.annotate("", xy=(x0 + 0.9, y1 - 0.2), xytext=(x0 + 0.9, y1 - 2.6),
-                arrowprops=dict(arrowstyle="-|>", color="#1a1a1a", lw=0.9, mutation_scale=8), zorder=9)
-    ax.text(x0 + 0.9, y1 + 0.05, "N", fontsize=fs.FS, fontweight="bold", ha="center", va="bottom", zorder=9)
-    # fonte
-    ax.text(0.985, 0.02, "Data source: IBGE (2024)\nDatum: SIRGAS 2000", transform=ax.transAxes,
-            fontsize=6, ha="right", va="bottom", linespacing=1.3,
-            bbox=dict(boxstyle="round,pad=0.4", facecolor="white", edgecolor="#999999", linewidth=0.4), zorder=9)
+    # rosa dos ventos simples (acima da barra de escala)
+    from matplotlib.patches import Polygon
+    cx, cy, rr = xs + 1.0, ybar + 4.2, 1.5
+    ax.add_patch(Polygon([(cx, cy + rr), (cx - 0.45, cy), (cx, cy + 0.25)], closed=True, fc="#1a1a1a",
+                         ec="#1a1a1a", lw=0.4, zorder=9))
+    ax.add_patch(Polygon([(cx, cy + rr), (cx + 0.45, cy), (cx, cy + 0.25)], closed=True, fc="white",
+                         ec="#1a1a1a", lw=0.4, zorder=9))
+    ax.text(cx, cy + rr + 0.25, "N", fontsize=fs.FS, fontweight="bold", ha="center", va="bottom", zorder=9)
+    # fonte (sem caixa, sob a barra de escala)
+    ax.text(xs, y0 - 0.75, "Data: IBGE (2024), LSIB (2017) · Datum: SIRGAS 2000", fontsize=6, ha="left",
+            va="bottom", color="#444444", zorder=9)
+    # inset: o Brasil na América do Sul
+    sa = gpd.read_file(SA_JSON)
+    ins = ax.inset_axes([0.80, 0.035, 0.18, 0.27])
+    sa.plot(ax=ins, color="#e6e6e6", edgecolor="#9e9e9e", linewidth=0.25)
+    br.plot(ax=ins, color="#7d7d7d", edgecolor="#4d4d4d", linewidth=0.3)
+    ins.set_xlim(-82, -34)
+    ins.set_ylim(-56, 13)
+    ins.set_aspect(1 / np.cos(np.radians(-20)))
+    ins.set_xticks([])
+    ins.set_yticks([])
+    ins.set_facecolor("white")
+    for sp in ins.spines.values():
+        sp.set_linewidth(0.5)
+        sp.set_color("#777777")
+    ins.set_title("South America", fontsize=5.5, color="#333333", pad=1.5)
 
     # checagem extra: rótulo de capital sobre marcador de outra capital
     fig.canvas.draw()
