@@ -14,7 +14,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 HERE = os.path.dirname(os.path.abspath(__file__))
 V6 = os.path.dirname(HERE)
 SUB = os.path.join(V6, "Submissao_HU_EEQI_v1")
-RSEI = r"D:\Luana\Submissão_Paper_2\Review\Revised_Submission\01_Manuscript\Main_text_UEC_formatted_v4_Clean.docx"
+RSEI = os.environ.get("TEMPLATE_DOCX", "template_manuscript.docx")  # docx modelo de formatação
 TR = os.path.join(V6, "trends_HU_EEQI_v6")
 TITLE = ("Beyond greenness: a hybrid environmental-equity index reveals widespread urban quality decline across "
          "Brazil's 27 state capitals (2000–2025)")
