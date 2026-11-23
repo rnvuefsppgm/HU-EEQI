@@ -1,0 +1,23 @@
+# Legenda única das figuras (para o paper)
+
+Uma legenda vale para todas as 27 páginas. Cada página traz só a identificação "Figure S1 (k/27). Capital (UF)". Troque "S1" pelo número da figura no manuscrito.
+
+## English (manuscript)
+**Figure S1.** Annual maps of the Hybrid Urban Environmental-Equity Quality Index (HU-EEQI) for the 27 Brazilian state capitals, 2000–2025 (one panel per year; one page per capital, in alphabetical order). HU-EEQI = EQ^0.6 · E^0.2 · J^0.2, where EQ is the environmental quality — the CRITIC-weighted geometric mean of NDVI, Tasseled-Cap wetness, NDBSI, the afternoon heat index and aerosol optical depth, each normalized with bounds pooled across all capitals and years (1st–99th percentiles) — and E and J are the local equity and environmental justice, both computed within a 2-km population-weighted window; where J was uninformative (vulnerability proxy constant within the capital), its exponent was redistributed proportionally to EQ and E. Values range from 0 (lowest) to 1 (highest) on a common scale across capitals and years. Optical descriptors come from annual median composites of Landsat Collection 2 Level-2 surface reflectance harmonized to OLI; the heat index is the annual median of daily afternoon maxima of the NWS heat index from ERA5-Land; aerosol optical depth (550 nm) comes from MODIS MAIAC. The index is computed only within a fixed urban domain (GHS-SMOD suburban or denser in any year of 2000–2025, excluding pixels covered by water at least 50% of the time in the JRC Global Surface Water); white areas lie outside this domain or the official municipal boundary (IBGE). Missing pixel-years (cloud and shadow, Landsat 7 SLC-off gaps, fewer than three clear observations) were filled pixel by pixel: by linear interpolation between the nearest preceding and following observed years, by the nearest observed year at the ends of the series, by the mean of the valid pixels within a 2-km window in the same year, or by the capital median; overall, 0.62% of the urban-domain pixel-years were filled (more than 10% in 21 of the 701 capital-years). Each map is framed on the main contiguous urban patches (95–100% of the urban domain shown in 25 capitals; 86% in Maceió and 85% in Porto Velho, where distant urban nuclei are omitted) and rendered at 30 m (50 m for Brasília). The scale bar refers to the first panel of each page.
+
+## Português (referência)
+**Figura S1.** Mapas anuais do Índice Híbrido de Qualidade Ambiental e Equidade Urbana (HU-EEQI) das 27 capitais brasileiras, de 2000 a 2025 (um painel por ano; uma página por capital, em ordem alfabética). HU-EEQI = EQ^0,6 · E^0,2 · J^0,2.
+- **EQ (qualidade ambiental):** média geométrica, com pesos CRITIC, do NDVI, da umidade Tasseled-Cap, do NDBSI, do índice de calor da tarde e da profundidade óptica de aerossóis. Cada descritor é normalizado com limites comuns a todas as capitais e anos (percentis 1–99).
+- **E e J (equidade local e justiça ambiental):** calculados numa janela de 2 km ponderada pela população. Onde J não traz informação (proxy de vulnerabilidade constante na capital), seu expoente é redistribuído proporcionalmente entre EQ e E.
+- **Escala:** os valores vão de 0 (pior) a 1 (melhor), na mesma escala para todas as capitais e anos.
+- **Fontes:** os descritores ópticos vêm de composições anuais pela mediana do Landsat Coleção 2 Nível 2, harmonizado para o OLI. O índice de calor é a mediana anual dos máximos diários da tarde do heat index (NWS), calculado com o ERA5-Land. A profundidade óptica de aerossóis (550 nm) vem do MODIS MAIAC.
+- **Domínio:** o índice é calculado apenas no domínio urbano fixo: pixels suburbanos ou mais densos pelo GHS-SMOD em algum ano de 2000 a 2025, excluídos os cobertos por água em 50% do tempo ou mais pelo JRC Global Surface Water. As áreas em branco estão fora desse domínio ou fora do limite municipal oficial (IBGE).
+- **Lacunas:** os pixel-anos sem dado (nuvem e sombra, faixas do Landsat 7 SLC-off, menos de três observações limpas) foram preenchidos pixel a pixel, nesta ordem:
+  1. interpolação linear entre os anos observados mais próximos antes e depois;
+  2. o ano observado mais próximo, nas pontas da série;
+  3. a média dos pixels válidos numa janela de 2 km no mesmo ano;
+  4. a mediana da capital.
+
+  No total, 0,62% dos pixel-anos do domínio urbano foram preenchidos (mais de 10% em 21 dos 701 capital-anos).
+- **Enquadramento:** cada mapa é enquadrado nas manchas urbanas contínuas principais. Aparecem de 95% a 100% do domínio urbano em 25 capitais; em Maceió aparecem 86% e em Porto Velho 85%, porque núcleos urbanos distantes ficam de fora. A renderização é em 30 m (50 m em Brasília).
+- **Barra de escala:** refere-se ao primeiro painel de cada página.

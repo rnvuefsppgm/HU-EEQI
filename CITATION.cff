@@ -1,0 +1,59 @@
+cff-version: 1.2.0
+message: >-
+  If you use this code, please cite the manuscript below (preferred) and this repository.
+type: software
+title: >-
+  HU-EEQI: Earth Engine and Python code of the Hybrid Urban Environmental-Equity Quality Index
+  for the 27 Brazilian state capitals (2000-2025)
+authors:
+  - family-names: Lima
+    given-names: Luana Brito
+    affiliation: >-
+      Postgraduate Program in Earth Modeling and Environmental Sciences (PPGM),
+      State University of Feira de Santana (UEFS), Brazil
+  - family-names: Vasconcelos
+    given-names: Rodrigo N.
+    affiliation: >-
+      Postgraduate Program in Earth Modeling and Environmental Sciences (PPGM),
+      State University of Feira de Santana (UEFS), Brazil
+  - family-names: Cebrian
+    given-names: Francisco
+    affiliation: >-
+      Facultad de Humanidades de Albacete, Universidad de Castilla-La Mancha
+      (UCLM), Spain
+  - family-names: Santana
+    given-names: Mariana M. M.
+    affiliation: >-
+      Department of Forest Engineering, State University of Amapa (UEAP), Brazil
+  - family-names: Franca Rocha
+    given-names: Washington de Jesus Sant'Anna da
+    affiliation: >-
+      Postgraduate Program in Earth Modeling and Environmental Sciences (PPGM),
+      State University of Feira de Santana (UEFS), Brazil
+repository-code: https://github.com/rnvuefsppgm/HU-EEQI
+license: GPL-3.0
+keywords:
+  - urban environmental quality
+  - environmental justice
+  - remote sensing index
+  - Mann-Kendall trend analysis
+  - Google Earth Engine
+  - Brazilian state capitals
+preferred-citation:
+  type: article
+  title: >-
+    Hybrid Urban Environmental-Equity Quality Index (HU-EEQI) for the Brazilian state capitals (2000-2025)
+  authors:
+    - family-names: Lima
+      given-names: Luana Brito
+    - family-names: Vasconcelos
+      given-names: Rodrigo N.
+    - family-names: Cebrian
+      given-names: Francisco
+    - family-names: Santana
+      given-names: Mariana M. M.
+    - family-names: Franca Rocha
+      given-names: Washington de Jesus Sant'Anna da
+  journal: Urban Ecosystems
+  year: 2026
+  notes: Manuscript submitted; title, volume, pages and DOI to be updated upon publication.

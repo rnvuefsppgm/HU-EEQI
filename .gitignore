@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.tif
+*.tmp*
+log_*.txt
+.ipynb_checkpoints/
